@@ -4,7 +4,6 @@ import { useUser } from "@/lib/firebase/auth";
 import { storage } from "@/lib/firebase/storage";
 import { User } from "firebase/auth";
 import { getBlob, getDownloadURL, ref } from "firebase/storage";
-import { LoaderIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 import { cn } from "@/lib/utils";
