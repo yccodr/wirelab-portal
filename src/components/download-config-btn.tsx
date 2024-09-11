@@ -43,6 +43,7 @@ function DownloadConfigBtn() {
 
     toast({
       title: "下載中...",
+      duration: 1500,
     });
 
     const configFileRef = ref(storage, `${user.uid}.conf`);

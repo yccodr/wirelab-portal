@@ -21,7 +21,7 @@ function WireguardTestConnection() {
             <li>
               輸入以下指令來 ping 實驗室的內部伺服器：
               <pre className="bg-gray-100 p-2 rounded mt-2">
-                <code>ping 10.216.0.1</code>
+                <code>ping 10.216.100.1</code>
               </pre>
             </li>
             <li>如果有收到回覆，則表示 VPN 連接成功</li>
