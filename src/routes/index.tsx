@@ -28,7 +28,7 @@ function Index() {
       {isLoggedIn ? (
         <SignedIn />
       ) : (
-        <Button onClick={signInWithGoogle}>Sign In</Button>
+        <Button onClick={signInWithGoogle}>請先登入</Button>
       )}
     </div>
   );
