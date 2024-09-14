@@ -8,11 +8,15 @@ export const Route = createFileRoute("/")({
 
 function SignedIn() {
   return (
-    <>
+    <div className="flex flex-col container px-6 sm:px-8 lg:px-12 mt-8">
+      <h1 className="text-4xl font-semibold mb-8">嗨, 今天要做什麼？</h1>
+
       <Link to="/wireguard">
-        <Button variant="link">設定 VPN</Button>
+        <Button variant="ghost" className="w-full justify-start">
+          設定 VPN
+        </Button>
       </Link>
-    </>
+    </div>
   );
 }
 

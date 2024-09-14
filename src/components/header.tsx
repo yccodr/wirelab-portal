@@ -9,7 +9,7 @@ function Header() {
   const { isLoggedIn, isLoading, signInWithGoogle } = useUser();
 
   return (
-    <div className="sticky top-0 z-50 flex items-center justify-between bg-background lg:py-6 lg:px-12 sm:py-4 sm:px-8 py-4 px-6 w-screen">
+    <div className="sticky top-0 z-50 container mx-auto flex items-center justify-between bg-background lg:py-6 lg:px-12 sm:py-4 sm:px-8 py-4 px-6 w-screen">
       <div className="flex items-center gap-2">
         <Link to="/">
           <span className="text-2xl font-bold">Wirelab Orientation</span>
