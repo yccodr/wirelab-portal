@@ -12,7 +12,7 @@ function SignedIn() {
   const { isLoading, greeting } = useGreeting();
 
   return (
-    <div className="flex flex-col container px-6 sm:px-8 lg:px-12 mt-8">
+    <div className="flex flex-col container">
       {isLoading ? (
         <Skeleton className="h-10 w-[32ch]" />
       ) : (
@@ -20,8 +20,14 @@ function SignedIn() {
       )}
 
       <Link to="/wireguard">
-        <Button variant="ghost" className="w-full justify-start">
+        <Button variant="ghost" className="w-full justify-start text-lg py-5">
           設定 VPN
+        </Button>
+      </Link>
+
+      <Link to="/vm">
+        <Button variant="ghost" className="w-full justify-start text-lg py-5">
+          設定 VM
         </Button>
       </Link>
     </div>

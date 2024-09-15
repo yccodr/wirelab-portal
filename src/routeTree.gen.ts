@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as WireguardIndexImport } from './routes/wireguard/index'
+import { Route as VmIndexImport } from './routes/vm/index'
 
 // Create Virtual Routes
 
@@ -39,6 +40,11 @@ const IndexRoute = IndexImport.update({
 
 const WireguardIndexRoute = WireguardIndexImport.update({
   path: '/wireguard/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const VmIndexRoute = VmIndexImport.update({
+  path: '/vm/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -126,6 +132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WireguardTestConnectionLazyImport
       parentRoute: typeof rootRoute
     }
+    '/vm/': {
+      id: '/vm/'
+      path: '/vm'
+      fullPath: '/vm'
+      preLoaderRoute: typeof VmIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/wireguard/': {
       id: '/wireguard/'
       path: '/wireguard'
@@ -145,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/wireguard/download-config': typeof WireguardDownloadConfigLazyRoute
   '/wireguard/install': typeof WireguardInstallLazyRoute
   '/wireguard/test-connection': typeof WireguardTestConnectionLazyRoute
+  '/vm': typeof VmIndexRoute
   '/wireguard': typeof WireguardIndexRoute
 }
 
@@ -155,6 +169,7 @@ export interface FileRoutesByTo {
   '/wireguard/download-config': typeof WireguardDownloadConfigLazyRoute
   '/wireguard/install': typeof WireguardInstallLazyRoute
   '/wireguard/test-connection': typeof WireguardTestConnectionLazyRoute
+  '/vm': typeof VmIndexRoute
   '/wireguard': typeof WireguardIndexRoute
 }
 
@@ -166,6 +181,7 @@ export interface FileRoutesById {
   '/wireguard/download-config': typeof WireguardDownloadConfigLazyRoute
   '/wireguard/install': typeof WireguardInstallLazyRoute
   '/wireguard/test-connection': typeof WireguardTestConnectionLazyRoute
+  '/vm/': typeof VmIndexRoute
   '/wireguard/': typeof WireguardIndexRoute
 }
 
@@ -178,6 +194,7 @@ export interface FileRouteTypes {
     | '/wireguard/download-config'
     | '/wireguard/install'
     | '/wireguard/test-connection'
+    | '/vm'
     | '/wireguard'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -187,6 +204,7 @@ export interface FileRouteTypes {
     | '/wireguard/download-config'
     | '/wireguard/install'
     | '/wireguard/test-connection'
+    | '/vm'
     | '/wireguard'
   id:
     | '__root__'
@@ -196,6 +214,7 @@ export interface FileRouteTypes {
     | '/wireguard/download-config'
     | '/wireguard/install'
     | '/wireguard/test-connection'
+    | '/vm/'
     | '/wireguard/'
   fileRoutesById: FileRoutesById
 }
@@ -207,6 +226,7 @@ export interface RootRouteChildren {
   WireguardDownloadConfigLazyRoute: typeof WireguardDownloadConfigLazyRoute
   WireguardInstallLazyRoute: typeof WireguardInstallLazyRoute
   WireguardTestConnectionLazyRoute: typeof WireguardTestConnectionLazyRoute
+  VmIndexRoute: typeof VmIndexRoute
   WireguardIndexRoute: typeof WireguardIndexRoute
 }
 
@@ -217,6 +237,7 @@ const rootRouteChildren: RootRouteChildren = {
   WireguardDownloadConfigLazyRoute: WireguardDownloadConfigLazyRoute,
   WireguardInstallLazyRoute: WireguardInstallLazyRoute,
   WireguardTestConnectionLazyRoute: WireguardTestConnectionLazyRoute,
+  VmIndexRoute: VmIndexRoute,
   WireguardIndexRoute: WireguardIndexRoute,
 }
 
@@ -238,6 +259,7 @@ export const routeTree = rootRoute
         "/wireguard/download-config",
         "/wireguard/install",
         "/wireguard/test-connection",
+        "/vm/",
         "/wireguard/"
       ]
     },
@@ -258,6 +280,9 @@ export const routeTree = rootRoute
     },
     "/wireguard/test-connection": {
       "filePath": "wireguard/test-connection.lazy.tsx"
+    },
+    "/vm/": {
+      "filePath": "vm/index.tsx"
     },
     "/wireguard/": {
       "filePath": "wireguard/index.tsx"
