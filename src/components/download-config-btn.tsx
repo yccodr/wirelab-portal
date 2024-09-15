@@ -9,7 +9,7 @@ import { Skeleton } from "./ui/skeleton";
 import { cn } from "@/lib/utils";
 
 const wireguardConfigUrl = (user: User) => {
-  const configFileRef = ref(storage, `${user.uid}.conf`);
+  const configFileRef = ref(storage, `${user.uid}/wireguard.conf`);
   return getDownloadURL(configFileRef);
 };
 
@@ -46,7 +46,7 @@ function DownloadConfigBtn() {
       duration: 1500,
     });
 
-    const configFileRef = ref(storage, `${user.uid}.conf`);
+    const configFileRef = ref(storage, `${user.uid}/wireguard.conf`);
     getBlob(configFileRef).then((blob) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
