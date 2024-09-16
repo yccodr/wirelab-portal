@@ -1,8 +1,9 @@
 import DownloadSshKeyBtn from "@/components/download-ssh-key-btn";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { firebaseAuth } from "@/lib/firebase/auth";
 import { firestore } from "@/lib/firebase/firestore";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -88,7 +89,12 @@ function VMIndex() {
 
       <VMConfig />
 
-      <DownloadSshKeyBtn />
+      <div className="flex flex-row gap-4">
+        <DownloadSshKeyBtn />
+        <Link to="/vm/ssh-setup">
+          <Button variant="outline">如何設定 SSH 連線</Button>
+        </Link>
+      </div>
     </div>
   );
 }

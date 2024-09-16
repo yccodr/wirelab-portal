@@ -30,6 +30,7 @@ const WireguardAddConfigLazyImport = createFileRoute('/wireguard/add-config')()
 const WireguardActivateTunnelLazyImport = createFileRoute(
   '/wireguard/activate-tunnel',
 )()
+const VmSshSetupLazyImport = createFileRoute('/vm/ssh-setup')()
 
 // Create/Update Routes
 
@@ -86,6 +87,11 @@ const WireguardActivateTunnelLazyRoute =
     import('./routes/wireguard/activate-tunnel.lazy').then((d) => d.Route),
   )
 
+const VmSshSetupLazyRoute = VmSshSetupLazyImport.update({
+  path: '/vm/ssh-setup',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/vm/ssh-setup.lazy').then((d) => d.Route))
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -95,6 +101,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/vm/ssh-setup': {
+      id: '/vm/ssh-setup'
+      path: '/vm/ssh-setup'
+      fullPath: '/vm/ssh-setup'
+      preLoaderRoute: typeof VmSshSetupLazyImport
       parentRoute: typeof rootRoute
     }
     '/wireguard/activate-tunnel': {
@@ -153,6 +166,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/vm/ssh-setup': typeof VmSshSetupLazyRoute
   '/wireguard/activate-tunnel': typeof WireguardActivateTunnelLazyRoute
   '/wireguard/add-config': typeof WireguardAddConfigLazyRoute
   '/wireguard/download-config': typeof WireguardDownloadConfigLazyRoute
@@ -164,6 +178,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/vm/ssh-setup': typeof VmSshSetupLazyRoute
   '/wireguard/activate-tunnel': typeof WireguardActivateTunnelLazyRoute
   '/wireguard/add-config': typeof WireguardAddConfigLazyRoute
   '/wireguard/download-config': typeof WireguardDownloadConfigLazyRoute
@@ -176,6 +191,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/vm/ssh-setup': typeof VmSshSetupLazyRoute
   '/wireguard/activate-tunnel': typeof WireguardActivateTunnelLazyRoute
   '/wireguard/add-config': typeof WireguardAddConfigLazyRoute
   '/wireguard/download-config': typeof WireguardDownloadConfigLazyRoute
@@ -189,6 +205,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/vm/ssh-setup'
     | '/wireguard/activate-tunnel'
     | '/wireguard/add-config'
     | '/wireguard/download-config'
@@ -199,6 +216,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/vm/ssh-setup'
     | '/wireguard/activate-tunnel'
     | '/wireguard/add-config'
     | '/wireguard/download-config'
@@ -209,6 +227,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/vm/ssh-setup'
     | '/wireguard/activate-tunnel'
     | '/wireguard/add-config'
     | '/wireguard/download-config'
@@ -221,6 +240,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  VmSshSetupLazyRoute: typeof VmSshSetupLazyRoute
   WireguardActivateTunnelLazyRoute: typeof WireguardActivateTunnelLazyRoute
   WireguardAddConfigLazyRoute: typeof WireguardAddConfigLazyRoute
   WireguardDownloadConfigLazyRoute: typeof WireguardDownloadConfigLazyRoute
@@ -232,6 +252,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  VmSshSetupLazyRoute: VmSshSetupLazyRoute,
   WireguardActivateTunnelLazyRoute: WireguardActivateTunnelLazyRoute,
   WireguardAddConfigLazyRoute: WireguardAddConfigLazyRoute,
   WireguardDownloadConfigLazyRoute: WireguardDownloadConfigLazyRoute,
@@ -254,6 +275,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/vm/ssh-setup",
         "/wireguard/activate-tunnel",
         "/wireguard/add-config",
         "/wireguard/download-config",
@@ -265,6 +287,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/vm/ssh-setup": {
+      "filePath": "vm/ssh-setup.lazy.tsx"
     },
     "/wireguard/activate-tunnel": {
       "filePath": "wireguard/activate-tunnel.lazy.tsx"

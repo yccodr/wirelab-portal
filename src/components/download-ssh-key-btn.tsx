@@ -76,7 +76,7 @@ function DownloadSshKeyBtn() {
   return (
     <Button
       className="relative"
-      variant="outline"
+      variant="default"
       onClick={downloadWireguardFile}
       disabled={isLoading}
     >
