@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { firebaseApp } from "./init";
 import { useCallback, useEffect, useState } from "react";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@repo/ui/hooks/use-toast";
 
 const firebaseAuth = getAuth(firebaseApp);
 const googleAuthProvider = new GoogleAuthProvider();

@@ -4,12 +4,8 @@
     "indexes": "firebase/firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist/app/webapp",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "dist/apps/webapp",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",

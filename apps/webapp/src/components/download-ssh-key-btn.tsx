@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { Button } from "@repo/ui/components/ui/button";
+import { useToast } from "@repo/ui/hooks/use-toast";
 import { useUser } from "@/lib/firebase/auth";
 import { storage } from "@/lib/firebase/storage";
 import { User } from "firebase/auth";
 import { getBlob, getDownloadURL, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
-import { Skeleton } from "./ui/skeleton";
-import { cn } from "@/lib/utils";
+import { Skeleton } from "@repo/ui/components/ui/skeleton";
+import { cn } from "@repo/ui/lib/utils";
 import { CircleX } from "lucide-react";
 
 const sshKeyUrl = (user: User) => {

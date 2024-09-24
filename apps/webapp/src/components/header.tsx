@@ -1,8 +1,8 @@
 import { signOut } from "firebase/auth";
-import { Button } from "./ui/button";
+import { Button } from "@repo/ui/components/ui/button";
 import { firebaseAuth, useUser } from "@/lib/firebase/auth";
-import { Skeleton } from "./ui/skeleton";
-import { cn } from "@/lib/utils";
+import { Skeleton } from "@repo/ui/components/ui/skeleton";
+import { cn } from "@repo/ui/lib/utils";
 import { Link } from "@tanstack/react-router";
 
 function Header() {

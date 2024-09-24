@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/ui/button";
 import { useUser } from "@/lib/firebase/auth";
 import { useGreeting } from "@/hooks/use-greeting";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@repo/ui/components/ui/skeleton";
 
 export const Route = createFileRoute("/")({
   component: Index,

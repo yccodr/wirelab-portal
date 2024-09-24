@@ -1,5 +1,5 @@
 import DownloadConfigBtn from "@/components/download-config-btn";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/ui/components/ui/button";
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 

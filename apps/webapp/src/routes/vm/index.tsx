@@ -1,6 +1,6 @@
 import DownloadSshKeyBtn from "@/components/download-ssh-key-btn";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@repo/ui/components/ui/button";
+import { Skeleton } from "@repo/ui/components/ui/skeleton";
 import { firebaseAuth } from "@/lib/firebase/auth";
 import { firestore } from "@/lib/firebase/firestore";
 import { createFileRoute, Link } from "@tanstack/react-router";
