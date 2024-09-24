@@ -11,6 +11,11 @@ export default defineConfig({
     port: 3000,
   },
 
+  build: {
+    emptyOutDir: true,
+    outDir: "../../dist/apps/webapp",
+  },
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
