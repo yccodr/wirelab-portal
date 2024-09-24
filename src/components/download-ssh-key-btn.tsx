@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { CircleX } from "lucide-react";
 
 const sshKeyUrl = (user: User) => {
-  const configFileRef = ref(storage, `${user.uid}/wirelab-vm.key`);
+  const configFileRef = ref(storage, `${user.uid}/vm-key`);
   return getDownloadURL(configFileRef);
 };
 
