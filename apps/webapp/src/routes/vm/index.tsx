@@ -7,6 +7,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { Label } from "@repo/ui/components/ui/label";
 
 export const Route = createFileRoute("/vm/")({
   component: VMIndex,
@@ -62,17 +63,25 @@ function VMConfig() {
 
   if (isLoading) {
     return (
-      <ul className="mt-8 flex flex-col gap-1 mb-8">
-        <li>
-          <Skeleton className="w-[15ch] h-4 my-1" />
-        </li>
-        <li>
-          <Skeleton className="w-[21ch] h-4 my-1" />
-        </li>
-        <li>
-          <Skeleton className="w-[21ch] h-4 my-1" />
-        </li>
-      </ul>
+      <>
+        <ul className="mt-8 flex flex-col gap-1 mb-8">
+          <li>
+            <Skeleton className="w-[15ch] h-4 my-1" />
+          </li>
+          <li>
+            <Skeleton className="w-[21ch] h-4 my-1" />
+          </li>
+          <li>
+            <Skeleton className="w-[21ch] h-4 my-1" />
+          </li>
+        </ul>
+        <div>
+          <Label className="px-1 font-bold">Command</Label>
+          <code className="flex flex-col gap-1 mb-8 bg-gray-900 dark:bg-gray-60 px-4 py-2 rounded-md text-white">
+            <Skeleton className="w-full h-4 my-1 bg-gray-600/80" />
+          </code>
+        </div>
+      </>
     );
   }
 
@@ -81,11 +90,20 @@ function VMConfig() {
   }
 
   return (
-    <ul className="mt-8 flex flex-col gap-1 mb-8">
-      <li>名稱：{config.name}</li>
-      <li>User Name: {config.user}</li>
-      <li>IP 位址：{config.ip}</li>
-    </ul>
+    <>
+      <ul className="mt-8 flex flex-col gap-1 mb-8">
+        <li>名稱：{config.name}</li>
+        <li>User Name: {config.user}</li>
+        <li>IP 位址：{config.ip}</li>
+      </ul>
+
+      <div>
+        <Label className="px-1 font-bold">Command</Label>
+        <code className="flex flex-col gap-1 mb-8 bg-gray-900 dark:bg-gray-60 px-4 py-2 rounded-md text-white">
+          ssh -i vm-key {config.user}@{config.ip}
+        </code>
+      </div>
+    </>
   );
 }
 
