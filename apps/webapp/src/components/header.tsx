@@ -12,7 +12,7 @@ function Header() {
     <div className="sticky top-0 z-50 container mx-auto flex items-center justify-between bg-background mb-8">
       <div className="flex items-center gap-2">
         <Link to="/">
-          <span className="text-2xl font-bold">Wirelab Orientation</span>
+          <span className="text-2xl font-bold">Wirelab Portal</span>
         </Link>
       </div>
 
