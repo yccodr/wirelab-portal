@@ -13,7 +13,11 @@ export const Route = createFileRoute("/vm/")({
 });
 
 const useVMConfig = () => {
-  const [config, setConfig] = useState<{ ip: string; name: string }>();
+  const [config, setConfig] = useState<{
+    ip: string;
+    user: string;
+    name: string;
+  }>();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -65,6 +69,9 @@ function VMConfig() {
         <li>
           <Skeleton className="w-[21ch] h-4 my-1" />
         </li>
+        <li>
+          <Skeleton className="w-[21ch] h-4 my-1" />
+        </li>
       </ul>
     );
   }
@@ -76,6 +83,7 @@ function VMConfig() {
   return (
     <ul className="mt-8 flex flex-col gap-1 mb-8">
       <li>名稱：{config.name}</li>
+      <li>User Name: {config.user}</li>
       <li>IP 位址：{config.ip}</li>
     </ul>
   );

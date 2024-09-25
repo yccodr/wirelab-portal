@@ -2,6 +2,8 @@
   "name": "@repo/ui",
   "type": "module",
   "scripts": {
+    "dev": "tailwindcss -w -i ./src/global.css -o ./dist/styles.css --postcss",
+    "build": "tailwindcss -i ./src/global.css -o ./dist/styles.css --postcss",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -32,7 +34,7 @@
     "vite": "^3.1.0"
   },
   "exports": {
-    "./global.css": "./src/global.css",
+    "./styles.css": "./dist/styles.css",
     "./postcss.config.js": "./postcss.config.js",
     "./tailwind.config.ts": "./tailwind.config.ts",
     "./lib/*": "./src/lib/*.ts",
