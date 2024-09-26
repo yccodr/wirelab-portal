@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Label } from "@repo/ui/components/ui/label";
+import { stripSubnet } from "@/lib/utils";
 
 export const Route = createFileRoute("/vm/")({
   component: VMIndex,
@@ -100,7 +101,7 @@ function VMConfig() {
       <div>
         <Label className="px-1 font-bold">Command</Label>
         <code className="flex flex-col gap-1 mb-8 bg-gray-900 dark:bg-gray-60 px-4 py-2 rounded-md text-white">
-          ssh -i vm-key {config.user}@{config.ip}
+          ssh -i vm-key {config.user}@{stripSubnet(config.ip)}
         </code>
       </div>
     </>
