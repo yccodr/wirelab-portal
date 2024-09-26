@@ -36,7 +36,7 @@ function DownloadSshKeyBtn() {
       });
   }, [user]);
 
-  const downloadWireguardFile = () => {
+  const downloadSshKeyFile = () => {
     if (user === null) {
       console.error("User is null");
       return;
@@ -52,12 +52,13 @@ function DownloadSshKeyBtn() {
       duration: 1500,
     });
 
-    const configFileRef = ref(storage, `${user.uid}/wirelab-vm.key`);
+    const VM_KEY_FILENAME = "vm-key";
+    const configFileRef = ref(storage, `${user.uid}/${VM_KEY_FILENAME}`);
     getBlob(configFileRef).then((blob) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `wirelab-vm.key`;
+      a.download = VM_KEY_FILENAME;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -77,7 +78,7 @@ function DownloadSshKeyBtn() {
     <Button
       className="relative"
       variant="default"
-      onClick={downloadWireguardFile}
+      onClick={downloadSshKeyFile}
       disabled={isLoading}
     >
       {isLoading ? (
