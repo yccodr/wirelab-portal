@@ -3,6 +3,11 @@ interface User {
   name: string;
   email: string;
   tags?: string[];
+  vm: {
+    name: string;
+    user: string;
+    ip: string;
+  };
   sshPublicKey?: string;
   sshPrivateKey?: string;
   wireguardConfig?: string;
@@ -14,6 +19,7 @@ interface UserForm {
   tags?: string[];
   vm: {
     name: string;
+    user: string;
     ip: string;
   };
   sshPublicKey?: string;

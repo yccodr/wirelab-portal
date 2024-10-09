@@ -28,7 +28,11 @@ export async function getUsers(): Promise<User[]> {
       return new Promise<User>((resolve) => {
         auth.getUser(doc.id).then((user) => {
           resolve({
-            ...(doc.data() as { name: string; tags?: string[] }),
+            ...(doc.data() as {
+              name: string;
+              tags?: string[];
+              vm: { name: string; user: string; ip: string };
+            }),
             id: doc.id,
             email: user.email ?? "",
             sshPrivateKey: "",

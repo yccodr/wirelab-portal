@@ -39,6 +39,7 @@ const getUserCredentials = async (user: User) => {
 
 const getUser = async (userId: string) => {
   const user = await getUserById(userId);
+  user.id = userId;
   await getUserCredentials(user);
   return user;
 };

@@ -180,6 +180,15 @@ function UserModal(props: IProps) {
             </div>
 
             <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="vm-username" className="text-right">
+                VM Username
+              </Label>
+              <div className="col-span-3">
+                <Input id="vm-username" {...register("vm.user")} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="vm-ip" className="text-right">
                 VM IP (IPv4/CIDR)
               </Label>
@@ -206,7 +215,6 @@ function UserModal(props: IProps) {
                     ref={fileInputRef}
                     onChange={handleFileUpload}
                     className="hidden"
-                    accept=".pub,.pem,.key"
                   />
                   <Button
                     type="button"
