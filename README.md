@@ -1,50 +1,25 @@
-# React + TypeScript + Vite
+# Wirelab Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Why built this project?
 
-Currently, two official plugins are available:
+As a lab network admin, I've noticed that most people struggle with Wireguard and SSH configurations. These technical hurdles often lead to significant time delays, hindering their ability to focus on their core research. To streamline this process, I built this web app to help them go through the setup process step-by-step, enabling researchers to access their work environments more efficiently and devote more time to their valuable studies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project setup
 
-## Expanding the ESLint configuration
+This project is built with [Bun](https://bun.sh/). Please install it first.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+After that, run the following command to install dependencies:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+bun install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Project structure
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+This project is a monorepo managed with [Turborepo](https://turborepo.org/).
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- `apps/webapp`: A React application for the user portal. This is hosted on the firebase hosting.
+- `apps/admin`: A Next.js application for the admin portal. This is not hosted on the firebase hosting. To run it, you need to clone the repo and run locally.
+- `packages/ui`: A React component library. It contains components from [shadcn/ui](https://github.com/shadcn/ui) and a shared css style.
+- `packages/eslint-config`: A shared eslint config.
+- `packages/typescript-config`: A shared typescript config.
