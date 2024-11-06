@@ -32,6 +32,7 @@ export async function getUsers(): Promise<User[]> {
               name: string;
               tags?: string[];
               vm: { name: string; user: string; ip: string };
+              vms: { name: string; user: string; ip: string }[];
             }),
             id: doc.id,
             email: user.email ?? "",
