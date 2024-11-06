@@ -6,7 +6,7 @@ import { firestore } from "@/lib/firebase/firestore";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Label } from "@repo/ui/components/ui/label";
 import { stripSubnet } from "@/lib/utils";
 
@@ -20,6 +20,13 @@ const useVMConfig = () => {
     user: string;
     name: string;
   }>();
+  const [multiConfig, setMultiConfig] = useState<
+    {
+      ip: string;
+      user: string;
+      name: string;
+    }[]
+  >();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -40,9 +47,11 @@ const useVMConfig = () => {
         const userDoc = await getDoc(userRef);
         if (userDoc.exists()) {
           setConfig(userDoc.data().vm);
+          setMultiConfig(userDoc.data().vms);
           setIsError(false);
         } else {
           setConfig(undefined);
+          setMultiConfig(undefined);
           setIsError(true);
         }
       } catch (error) {
@@ -56,11 +65,11 @@ const useVMConfig = () => {
     return () => unsubscribe();
   }, []);
 
-  return { config, isLoading, isError };
+  return { config, multiConfig, isLoading, isError };
 };
 
 function VMConfig() {
-  const { config, isLoading, isError } = useVMConfig();
+  const { config, multiConfig, isLoading, isError } = useVMConfig();
 
   if (isLoading) {
     return (
@@ -104,6 +113,24 @@ function VMConfig() {
           ssh -i vm-key {config.user}@{stripSubnet(config.ip)}
         </code>
       </div>
+
+      {multiConfig &&
+        multiConfig.map((c, index) => (
+          <Fragment key={`vm-${index}`}>
+            <ul className="mt-8 flex flex-col gap-1 mb-8">
+              <li>名稱：{c.name}</li>
+              <li>User Name: {c.user}</li>
+              <li>IP 位址：{c.ip}</li>
+            </ul>
+
+            <div>
+              <Label className="px-1 font-bold">Command</Label>
+              <code className="flex flex-col gap-1 mb-8 bg-gray-900 dark:bg-gray-60 px-4 py-2 rounded-md text-white">
+                ssh -i vm-key {c.user}@{stripSubnet(c.ip)}
+              </code>
+            </div>
+          </Fragment>
+        ))}
     </>
   );
 }
